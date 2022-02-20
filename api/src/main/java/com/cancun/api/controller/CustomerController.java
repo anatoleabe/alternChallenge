@@ -57,7 +57,7 @@ public class CustomerController {
         }
     }
 
-    @PostMapping("/customers")
+    @PostMapping("/customer")
     Customer newCustomer(@RequestBody Customer newCustomer) {
         return customerService.saveCustomer(newCustomer);
     }

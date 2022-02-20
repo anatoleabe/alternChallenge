@@ -58,7 +58,7 @@ public class ReservationController {
         }
     }
 
-    @PostMapping("/reservations")
+    @PostMapping("/reservation")
     Reservation newReservation(@RequestBody Reservation newReservation) {
         return reservationService.saveReservation(newReservation);
     }
