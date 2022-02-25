@@ -5,17 +5,20 @@
  */
 package com.cancun.api.model;
 
+import com.cancun.api.utils.DateTimeConverter;
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
+import java.util.Date;
+import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 /**
  *
@@ -32,21 +35,27 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "username", nullable = false, length = 32)
-    private String username;
+    @Column(name = "firstName", nullable = false, length = 64)
+    private String firstName;
     
-    @Column(name = "password", nullable = false, length = 64)
-    private String password;
+    @Column(name = "lastName", nullable = false, length = 64)
+    private String lastName;
     
-    @Column(name = "name", nullable = false, length = 64)
-    private String name;
+    @Column(name = "email", nullable = false, length = 64)
+    private String email;
     
+    @Column(name = "phone", nullable = false, length = 64)
+    private String phone;
+    
+    @Basic(optional = false)
     @Column(name = "creation", nullable = false)
-    private long creation;
+    @Convert(converter = DateTimeConverter.class)
+    @CreatedDate
+    private Date creation;
     
+    @Basic(optional = false)
+    @Convert(converter = DateTimeConverter.class)
+    @LastModifiedDate
     @Column(name = "lastModified", nullable = false)
-    private long lastModified;
-    
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-//    private List<Reservation> reservationList;
+    private Date lastModified;
 }

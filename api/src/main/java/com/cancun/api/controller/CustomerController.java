@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cancun.api.model.Customer;
 import com.cancun.api.service.CustomerService;
-import java.util.Date;
 import java.util.Optional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -74,21 +73,22 @@ public class CustomerController {
         Optional<Customer> e = customerService.getCustomer(id);
         if (e.isPresent()) {
             Customer currentCustomer = e.get();
-
-            String username = customer.getUsername();
-            if (username != null) {
-                currentCustomer.setUsername(username);
+            String firstName = customer.getFirstName();
+            if (firstName != null) {
+                currentCustomer.setFirstName(firstName);
             }
-            String password = customer.getPassword();
-            if (password != null) {
-                currentCustomer.setPassword(password);;
+            String lastname = customer.getFirstName();
+            if (lastname != null) {
+                currentCustomer.setLastName(lastname);
             }
-            String name = customer.getName();
-            if (name != null) {
-                currentCustomer.setName(name);
+            String email = customer.getEmail();
+            if (email != null) {
+                currentCustomer.setEmail(email);
             }
-            
-            currentCustomer.setLastModified(new Date().toInstant().getEpochSecond());
+            String tel = customer.getPhone();
+            if (tel != null) {
+                currentCustomer.setPhone(tel);
+            }
             customerService.saveCustomer(currentCustomer);
             return currentCustomer;
         } else {

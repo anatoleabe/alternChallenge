@@ -7,6 +7,7 @@ package com.cancun.web.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import lombok.Data;
 
 /**
@@ -28,7 +29,9 @@ public class Room implements Serializable {
     
     private BigDecimal price;
 
-    private long creation;
+    private Date creation;
 
-    private long lastModified;
+    private Date lastModified;
+    
+    
 }

@@ -6,7 +6,9 @@
 package com.cancun.web.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -19,15 +21,17 @@ public class Reservation implements Serializable {
     
     private int quantity;
     
-    private long startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
     
-    private long endDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date endDate;
     
     private boolean cancelled;
     
-    private long creation;
+    private Date creation;
     
-    private long lastModified;
+    private Date lastModified;
     
     private Room roomId;
     

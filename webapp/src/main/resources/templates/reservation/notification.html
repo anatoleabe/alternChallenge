@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+              integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+              crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <link rel="stylesheet" th:href="@{/css/form.css}">
+
+        <title>Cancun Hotel Rooms & Suites</title>
+
+        <style>
+            body {
+                padding-top: 50px;
+            }
+            .special {
+                padding-top:50px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Cancun Hotel Rooms & Suites</a>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container special">
+
+            <div style="background-color:#fff;margin:30px;box-sizing:border-box;font-size:16px;" th:if="${reservation!=null }">
+                <h1 style="padding:40px;box-sizing:border-box;font-size:24px;color:#ffffff;background-color:#cb5f51;margin:0;">Hotel Reservation</h1>
+                <p style="padding:40px 40px 20px 40px;margin:0;box-sizing:border-box;font-size:16px;">A guest has booked a reservation for <b th:text="${reservation.startDate}">Arrival Date</b> and will departure on <b th:text="${reservation.endDate}">Departure</b>.</p>
+                <h2 style="padding:20px 40px;margin:0;color:#394453;box-sizing:border-box;">Guest Details</h2>
+                <div style="box-sizing:border-box;padding:0 40px 20px;">
+                    <table style="border-collapse:collapse;width:100%;" >
+                        <tbody>
+                            <tr>
+                                <td style="padding:15px 0;text-decoration:underline;">Email</td>
+                                <td style="text-align:right;" th:text="${reservation.customerId.email}">Email</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:15px 0;text-decoration:underline;">Name</td>
+                                <td style="text-align:right;" th:text="${reservation.customerId.firstName} + ' ' + ${reservation.customerId.lastName}"> Name</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:15px 0;text-decoration:underline;">Phone</td>
+                                <td style="text-align:right;" th:text="${reservation.customerId.phone}">Phone</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:15px 0;text-decoration:underline;">Room Preference</td>
+                                <td style="text-align:right;" th:text="${reservation.roomId.type}">Room Preference</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:15px 0;text-decoration:underline;">Number of room</td>
+                                <td style="text-align:right;" th:text="${reservation.quantity}">Number of room</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
  *
  * @author anatoleabe
  */
-
 @Data
 @Service
 public class RoomService {
@@ -35,17 +34,17 @@ public class RoomService {
         roomProxy.deleteRoom(id);
     }
 
-     public Room saveRoom(Room room) {
+    public Room saveRoom(Room room) {
         Room savedRoom;
 
-        if(room.getId() == null) {
+        if (room.getId() == null) {
             // Create
             savedRoom = roomProxy.createRoom(room);
         } else {
             //Update
             savedRoom = roomProxy.updateRoom(room);
         }
-    
+
         return savedRoom;
     }
 

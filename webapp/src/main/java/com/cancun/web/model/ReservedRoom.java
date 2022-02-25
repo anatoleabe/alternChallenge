@@ -6,7 +6,6 @@
 package com.cancun.web.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import lombok.Data;
 
 /**
@@ -14,19 +13,10 @@ import lombok.Data;
  * @author anatoleabe
  */
 @Data
-public class Customer implements Serializable {
+public class ReservedRoom implements Serializable {
 
-    private Long id;
+    private Integer id;
+
+    private Long reservedQuantity;
     
-    private String firstName;
-    
-    private String lastName;
-    
-    private String email;
-    
-    private String phone;
-    
-    private Date creation;
-    
-    private Date lastModified;
 }

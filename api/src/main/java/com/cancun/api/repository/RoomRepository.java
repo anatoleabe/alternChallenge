@@ -6,6 +6,7 @@
 package com.cancun.api.repository;
 
 import com.cancun.api.model.Room;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,5 +17,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RoomRepository extends CrudRepository<Room, Long> {
-
+    
+    List<Room> findByQuantityGreaterThan(Integer value);
 }

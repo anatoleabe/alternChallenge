@@ -9,15 +9,19 @@ package com.cancun.api.controller;
  *
  * @author anatoleabe
  */
+import com.cancun.api.Constant;
+import com.cancun.api.model.AvailableRoom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cancun.api.model.Reservation;
 import com.cancun.api.service.ReservationService;
-import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -80,11 +84,11 @@ public class ReservationController {
             if (quantity != null) {
                 currentReservation.setQuantity(quantity);
             }
-            Long startDate = reservation.getStartDate();
+            Date startDate = reservation.getStartDate();
             if (startDate != null) {
                 currentReservation.setStartDate(startDate);
             }
-            Long endDate = reservation.getEndDate();
+            Date endDate = reservation.getEndDate();
             if (endDate != null) {
                 currentReservation.setEndDate(endDate);
             }
@@ -92,8 +96,7 @@ public class ReservationController {
             if (cancelled != null) {
                 currentReservation.setCancelled(cancelled);
             }
-            
-            currentReservation.setLastModified(new Date().toInstant().getEpochSecond());
+
             reservationService.saveReservation(currentReservation);
             return currentReservation;
         } else {
@@ -109,6 +112,12 @@ public class ReservationController {
     @DeleteMapping("/reservation/{id}")
     public void deleteReservation(@PathVariable("id") final Long id) {
         reservationService.deleteReservation(id);
+    }
+
+    @GetMapping("room/check/{start}/{end}")
+    public List<AvailableRoom> findAvailableRoomTypes(@PathVariable("start") @DateTimeFormat(pattern = Constant.DATE_FORMAT) Date start,
+            @PathVariable("end") @DateTimeFormat(pattern = Constant.DATE_FORMAT) Date end) {
+        return reservationService.availableRooms(start, end);
     }
 
 }

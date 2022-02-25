@@ -97,7 +97,6 @@ public class RoomController {
             if (price != null) {
                 currentRoom.setPrice(price);
             }
-            currentRoom.setLastModified(new Date().toInstant().getEpochSecond());
             roomService.saveRoom(currentRoom);
             return currentRoom;
         } else {

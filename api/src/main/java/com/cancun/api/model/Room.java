@@ -5,19 +5,21 @@
  */
 package com.cancun.api.model;
 
+import com.cancun.api.utils.DateTimeConverter;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 /**
  *
@@ -55,14 +57,13 @@ public class Room implements Serializable {
     
     @Basic(optional = false)
     @Column(name = "creation", nullable = false)
-    private long creation;
+    @Convert(converter = DateTimeConverter.class)
+    @CreatedDate
+    private Date creation;
     
-    @Basic(optional = false)
     @Column(name = "lastModified", nullable = false)
-    private long lastModified;
-    
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roomId")
-//    private List<Reservation> reservationList;
-
-    
+    @Basic(optional = false)
+    @Convert(converter = DateTimeConverter.class)
+    @LastModifiedDate
+    private Date lastModified;
 }
